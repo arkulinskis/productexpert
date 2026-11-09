@@ -508,6 +508,7 @@ native_deps:
   head_html: |
     <script src="_/theme/legal-kit.js?v=28aadfffb4"></script>
     <!-- seo:start (APP_MAKER/seo: edit seo/apps/productexpert.json and run seo.py, not here) -->
+    <link rel="canonical" href="https://productexpert.anvil.app/">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="keywords" content="director of product training, product management certification free, senior product manager course, product strategy course, product leadership program, head of product skills, product experimentation course, SaaS pricing and unit economics for PMs, AI product management, product manager to director">
     <meta name="author" content="Arkvital">
@@ -516,9 +517,16 @@ native_deps:
     <meta property="og:title" content="Product Expert: free Director of Product training">
     <meta property="og:description" content="Free director of product training and certificates: strategy, experiments, metrics, pricing, the P&amp;L, org design, executive influence and AI products.">
     <meta property="og:locale" content="en_CA">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:url" content="https://productexpert.anvil.app/">
+    <meta property="og:image" content="https://productexpert.anvil.app/_/theme/og-image.png">
+    <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Product Expert: Free, senior-level training for product managers ready to lead product">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Product Expert: free Director of Product training">
     <meta name="twitter:description" content="Free director of product training and certificates: strategy, experiments, metrics, pricing, the P&amp;L, org design, executive influence and AI products.">
+    <meta name="twitter:image" content="https://productexpert.anvil.app/_/theme/og-image.png">
+    <link rel="alternate" type="text/plain" title="Product Expert for AI assistants" href="https://productexpert.anvil.app/llms.txt">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "@id": "https://productexpert.anvil.app/#app", "name": "Product Expert", "url": "https://productexpert.anvil.app/", "description": "Free director of product training and certificates: strategy, experiments, metrics, pricing, the P&L, org design, executive influence and AI products.", "image": "https://productexpert.anvil.app/_/theme/og-image.png", "serviceType": "Free, senior-level training for product managers ready to lead product", "provider": {"@id": "https://arkvital.com/#org"}, "areaServed": "Worldwide", "availableChannel": {"@type": "ServiceChannel", "serviceUrl": "https://productexpert.anvil.app/", "name": "Web browser"}, "availableLanguage": "en", "audience": {"@type": "Audience", "audienceType": "Product managers with a few years' experience, senior and group PMs aiming at director, design, engineering and data leaders moving into product leadership, and founders who run product"}}, {"@type": "WebSite", "@id": "https://productexpert.anvil.app/#site", "url": "https://productexpert.anvil.app/", "name": "Product Expert", "publisher": {"@id": "https://arkvital.com/#org"}}, {"@type": "Organization", "@id": "https://arkvital.com/#org", "name": "Arkvital", "url": "https://arkvital.com", "email": "arkvital@outlook.com", "address": {"@type": "PostalAddress", "addressLocality": "Montreal", "addressRegion": "QC", "addressCountry": "CA"}}]}</script>
     <!-- seo:end -->
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#f4f5f7">
