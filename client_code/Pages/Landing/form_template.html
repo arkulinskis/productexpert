@@ -1,0 +1,165 @@
+<anvil-form layout="Product_Expert.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="lp">
+      <section class="lp-hero">
+        <div class="ui-wrap lp-hero-in">
+          <div class="lp-pitch">
+            <h1>Train for Director of Product, not for another sprint.</h1>
+            <p class="lead">Free, senior-level training and certification for product managers ready to lead: strategy, evidence and experimentation, metrics and pricing, the P&amp;L, org design, executive influence and AI products. Every basic fits in one module. The other 31 go deep.</p>
+            <div class="lp-cta" anvil:name="guest_cta">
+              <a class="ui-btn primary lg" href="#auth/signup">Start free <i class="ic ic-arrow"></i></a>
+              <a class="ui-btn lg" href="#labs/peek"><i class="ic ic-flask"></i>Try a lab, no account</a>
+            </div>
+            <div class="lp-cta" anvil:name="member_cta">
+              <a class="ui-btn primary lg" href="#home">Your dashboard <i class="ic ic-arrow"></i></a>
+              <a class="ui-btn lg" href="#plan"><i class="ic ic-calendar"></i>Your plan</a>
+            </div>
+          </div>
+          <div class="lp-diagram">
+            <anvil-component type="Product_Expert.Components.BetBoard" name="betboard"></anvil-component>
+            <p class="lp-drag small muted"><i class="ic ic-arrow"></i> Drag the handle: the same quarter, planned as features and planned as outcomes.</p>
+          </div>
+        </div>
+        <div class="ui-wrap">
+          <dl class="lp-facts">
+            <div><dt>Programs</dt><dd anvil:dom-node="n_tracks">8</dd></div>
+            <div><dt>Modules</dt><dd anvil:dom-node="n_modules">32</dd></div>
+            <div><dt>Drills</dt><dd anvil:dom-node="n_items">288</dd></div>
+            <div><dt>Case files</dt><dd anvil:dom-node="n_cases">22</dd></div>
+            <div><dt>Price</dt><dd>$0</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="lp-section" id="vs">
+        <div class="ui-wrap">
+          <h2 class="lp-h">The step from senior PM to director</h2>
+          <p class="lp-sub">Strong PMs are promoted for the left column. Directors are judged on the right one.</p>
+          <div class="lp-vs" role="table" aria-label="What a senior PM does versus what a director does">
+            <div class="lp-vs-row head" role="row"><span role="columnheader">A strong senior PM</span><span role="columnheader">A director of product</span><span role="columnheader" class="ui-sr">Where we teach it</span></div>
+            <div class="lp-vs-row" role="row">
+              <span role="cell" class="demo">Ships a great roadmap for one product area.</span>
+              <span role="cell" class="prod">Chooses which problems the whole portfolio solves, names the source of advantage, and decides what to stop.</span>
+              <span role="cell"><a href="#tracks/str">Product Strategy</a></span>
+            </div>
+            <div class="lp-vs-row" role="row">
+              <span role="cell" class="demo">Runs an A/B test and reports the lift.</span>
+              <span role="cell" class="prod">Builds the system that makes evidence trustworthy, and knows when a 22% &ldquo;win&rdquo; is a sample ratio mismatch.</span>
+              <span role="cell"><a href="#tracks/dsc">Discovery &amp; Evidence</a></span>
+            </div>
+            <div class="lp-vs-row" role="row">
+              <span role="cell" class="demo">Hits the feature date.</span>
+              <span role="cell" class="prod">Designs the teams, the outcomes, the guardrails and the cadence that let eight teams hit the right targets without being told how.</span>
+              <span role="cell"><a href="#tracks/org">Building the Product Org</a> · <a href="#tracks/grw">Metrics</a></span>
+            </div>
+            <div class="lp-vs-row" role="row">
+              <span role="cell" class="demo">Asks for more engineers.</span>
+              <span role="cell" class="prod">Writes the business case finance respects: lifetime value, acquisition cost, payback, margin and the opportunity cost of the team.</span>
+              <span role="cell"><a href="#tracks/biz">Business &amp; Go-to-Market</a></span>
+            </div>
+            <div class="lp-vs-row" role="row">
+              <span role="cell" class="demo">Escalates disagreements upward.</span>
+              <span role="cell" class="prod">Pre-wires decisions, turns the CEO&rsquo;s pet idea into a time-boxed test, and brings the board bad news first, with a plan.</span>
+              <span role="cell"><a href="#tracks/inf">Executive Influence</a></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section alt" id="how">
+        <div class="ui-wrap lp-how">
+          <div>
+            <h2 class="lp-h">How you learn here</h2>
+            <p class="lp-sub">Reading about strategy doesn&rsquo;t make you good at it. Every module makes you recall, judge and decide.</p>
+            <ol class="lp-steps">
+              <li><b>Read a short briefing</b><span>The idea, the evidence, what strong directors do and avoid, with sources you can check.</span></li>
+              <li><b>Drill it</b><span>Recall cards and &ldquo;director&rsquo;s call?&rdquo; judgements, scheduled by spaced repetition so you keep them for months.</span></li>
+              <li><b>Take the challenge</b><span>A realistic leadership scenario with real numbers. Write your decision, compare it with a model answer, score yourself on the rubric.</span></li>
+              <li><b>Pass the exam, get the certificate</b><span>Each program ends in a recall round and a capstone case. Certificates have a public verification link.</span></li>
+            </ol>
+          </div>
+          <figure class="lp-callcard" aria-label="Example drill">
+            <div class="cc-top"><span class="ui-badge accent"><i class="ic ic-scale"></i>Director&rsquo;s call?</span><span class="small muted">Foundations · Module 2</span></div>
+            <p class="cc-q">&ldquo;We approved all eleven requests from sales this quarter because each had a positive business case.&rdquo;</p>
+            <div class="cc-a"><span class="ui-badge bad"><i class="ic ic-x"></i>Not a director&rsquo;s call</span>
+              <p>Positive ROI isn&rsquo;t the bar; opportunity cost is. Eleven small yeses usually cost one big outcome.</p></div>
+            <figcaption class="small muted">One of 96 judgement calls across the programs.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="lp-section" id="programs">
+        <div class="ui-wrap">
+          <h2 class="lp-h">Eight programs, one job</h2>
+          <p class="lp-sub">Start with Foundations: every basic in one module, then judgement, decisions and writing. Take the specialist programs in the order your next role needs. Foundations plus any four earns the Director of Product credential.</p>
+          <anvil-component type="RepeatingPanel" name="programs_panel" prop:item_template="Product_Expert.Items.TrackCard" prop:role='["lp-programs"]'></anvil-component>
+        </div>
+      </section>
+
+      <section class="lp-section alt" id="labs">
+        <div class="ui-wrap">
+          <h2 class="lp-h">Labs you can play with right now</h2>
+          <p class="lp-sub">No account, nothing to install. Peek at an experiment until it &ldquo;wins&rdquo;, pull the levers of a metric tree, shape a retention curve, read a price survey, stress-test unit economics.</p>
+          <anvil-component type="RepeatingPanel" name="labs_panel" prop:item_template="Product_Expert.Items.LabCard" prop:role='["lb-grid"]'></anvil-component>
+        </div>
+      </section>
+
+      <section class="lp-section" id="incidents">
+        <div class="ui-wrap">
+          <h2 class="lp-h">Learn from other companies&rsquo; decisions</h2>
+          <p class="lp-sub">Publicly reported product decisions, good and bad, each with the leadership lesson, checked against the sources.</p>
+          <anvil-component type="RepeatingPanel" name="cases_panel" prop:item_template="Product_Expert.Items.CaseCard" prop:role='["lp-cases"]'></anvil-component>
+          <a class="ui-btn" href="#cases"><i class="ic ic-alert"></i>All case files</a>
+        </div>
+      </section>
+
+      <section class="lp-section alt" id="certificate">
+        <div class="ui-wrap lp-cert">
+          <div class="lp-cert-txt">
+            <h2 class="lp-h">A certificate that says what you did</h2>
+            <p class="lp-sub">Every module, every drill learned, every challenge passed, and a final exam. Each certificate lists its modules and has a public verification page anyone can check.</p>
+            <label class="ui-field lp-verify"><span>Check a credential ID</span>
+              <div class="ui-row">
+                <anvil-component type="TextBox" name="code_box" prop:placeholder="e.g. PXP-DSC-2026-T4WX9N" prop:role='["lp-code"]'></anvil-component>
+                <anvil-component type="Button" name="verify_button" prop:text="Verify" prop:role='["btn", "btn-primary", "ic-shield"]'></anvil-component>
+              </div>
+            </label>
+            <p class="small muted">Honest note: Product Expert certificates are issued on our own authority. They aren&rsquo;t university credits or an industry licence; their value is that they&rsquo;re hard to earn and easy to check.</p>
+          </div>
+          <div class="lp-cert-img">
+            <anvil-component type="Product_Expert.Components.Certificate" name="sample_cert" prop:decorative="true"></anvil-component>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section" id="honour">
+        <div class="ui-wrap">
+          <h2 class="lp-h">Recently certified</h2>
+          <anvil-component type="RepeatingPanel" name="honour_panel" prop:item_template="Product_Expert.Items.HonourCard" prop:role='["lp-honour"]'></anvil-component>
+          <p class="muted" anvil:name="no_honour">The first graduates will appear here.</p>
+        </div>
+      </section>
+
+      <section class="lp-section alt" id="faq">
+        <div class="ui-wrap ui-narrow">
+          <h2 class="lp-h">Questions</h2>
+          <details class="lp-faq"><summary>Is it really free?</summary><p>Yes. Every program, lab, drill, exam and certificate is free for now. There are no ads and we don&rsquo;t sell your data. If we ever add paid extras, what you&rsquo;ve earned stays yours.</p></details>
+          <details class="lp-faq"><summary>Who is it for?</summary><p>Product managers with a few years&rsquo; experience, senior and group PMs aiming at director, design, engineering and data leaders moving into product leadership, and founders who run product themselves.</p></details>
+          <details class="lp-faq"><summary>I already know Scrum and roadmaps. Will this bore me?</summary><p>No. Every basic (Scrum, Kanban, stories, specs, roadmap formats, scoring models, funnels, MVPs) is packed into one module, with the senior critique of each. The other 31 modules cover what directors are judged on: strategy and moats, trustworthy experiments, growth accounting, pricing, unit economics, org design, hiring and coaching managers, boards and CEOs, transformations, AI products, platforms and regulation.</p></details>
+          <details class="lp-faq"><summary>Will this make me a director?</summary><p>No course can promise a promotion, and you should be wary of any that does. What it can do is give you the judgement, vocabulary and practice that director interviews and director jobs test, and a certificate that shows you did the work. The capstones are written like the cases senior product interviews use.</p></details>
+          <details class="lp-faq"><summary>How long does it take?</summary><p>Each module is about an hour with drills and the challenge; each program is a few evenings. With five hours a week, all eight programs take about four months. Make a plan after you sign up and it&rsquo;ll give you dates.</p></details>
+          <details class="lp-faq"><summary>Where does the content come from?</summary><p>From primary sources and the practitioners who shaped the field: Cagan, Torres, Rumelt, Helmer, Kohavi, Grove, Dunford and many more, plus research, shareholder letters, regulators&rsquo; texts and public reporting for the case files. Every module lists its sources and the Library links to the originals.</p></details>
+          <details class="lp-faq"><summary>Is the certificate accredited?</summary><p>No. It&rsquo;s issued by Product Expert on its own authority, says exactly what you completed, and can be verified by anyone with the link. Treat it as evidence of work, not a licence.</p></details>
+        </div>
+      </section>
+
+      <section class="lp-section lp-last">
+        <div class="ui-wrap lp-band">
+          <div><h2>Practise the director&rsquo;s job before you have it.</h2><p>Start with Foundations: four modules, a few evenings.</p></div>
+          <a class="ui-btn primary lg" href="#auth/signup" anvil:name="band_guest">Start free</a>
+          <a class="ui-btn primary lg" href="#tracks/core" anvil:name="band_member">Open Foundations</a>
+        </div>
+      </section>
+    </div>
+  </anvil-block>
+</anvil-form>

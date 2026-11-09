@@ -1,0 +1,19 @@
+---
+custom_component: true
+properties:
+  - name: size
+    type: number
+    default_value: 120
+    description: Width and height in pixels
+    default_binding_prop: true
+  - name: decorative
+    type: boolean
+    default_value: false
+    description: Hidden from screen readers (when the words around it already say it)
+toolbox_item:
+  title: Verification stamp
+  group: Product Expert
+help_text: |
+  The Product Expert verification stamp, drawn by PX.seal in theme/assets/px-kit.js.
+---
+<span class="px-seal-host"><span class="px-seal-box" anvil:dom-node="box"></span></span>

@@ -1,0 +1,25 @@
+---
+custom_component: true
+properties:
+  - name: lab
+    type: string
+    default_value: ""
+    description: "Which lab to mount: peek, tree, cohort, price or unit"
+events:
+  - name: lab_done
+    description: "The learner reached the lab's goal"
+    parameters:
+      - name: score
+        description: 0-100
+      - name: detail
+        description: a JSON string with what they chose
+toolbox_item:
+  title: Lab stage
+  group: Product Expert
+help_text: |
+  Mounts one of the in-browser labs from theme/assets/px-labs.js (PX.lab) when shown and removes it when hidden.
+  Raises lab_done(score, detail) once when the learner reaches the goal.
+---
+<div class="px-labstage-host">
+  <div class="px-labstage" anvil:dom-node="box"></div>
+</div>
