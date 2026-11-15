@@ -145,8 +145,8 @@ tools/                     check.py, assets.py, build_icons.py, make_icons.py, u
   `fig` must exist there. TRACK_FIG in client_code/px.py maps programs to diagrams.
 - **Plans**: Plan.py (ORDER per goal, WARMUP per background, MODULE_EXTRA minutes); stored on users.plan.
 - **Director rule**: Curriculum.FELLOW_NEED (4) + Exams.maybe_fellow. Ranks: Learning.RANKS (Associate PM -> VP of Product).
-- **Feedback**: Prepsto link not created yet (claude@claude.com hit Prepsto's 60-link cap on 2026-11-08):
-  `__PREPSTO_CODE__` remains in anvil.yaml, state.py, Shell and Library, so check.py reports it until replaced.
+- **Feedback**: Prepsto link `au7urjq` (made 2026-11-14 after Prepsto's limit went from 60 to 100 links), in
+  anvil.yaml, state.py, Shell and Library; listed in APP_MAKER/prepsto-links.json.
 
 ## Recipes
 
