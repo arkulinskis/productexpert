@@ -1,0 +1,99 @@
+<anvil-form layout="Product_Expert.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="lo">
+      <anvil-component type="Product_Expert.Components.Hero" name="hero"></anvil-component>
+      <anvil-component type="Timer" name="clock" prop:interval="0"></anvil-component>
+      <div class="ui-wrap">
+
+        <div class="lo-index" anvil:name="index_part">
+          <h2 class="lo-h">Choose your loop</h2>
+          <p class="muted lo-sub">Each loop is four timed rounds with a different interviewer. The timer is soft: it turns saffron near the end, and you can still hand in late. Answers are marked against the examiners&rsquo; rubric afterwards.</p>
+          <anvil-component type="RepeatingPanel" name="formats_panel" prop:item_template="Product_Expert.Items.LoopFormat" prop:role='["lo-formats"]'></anvil-component>
+          <section class="px-panel lo-past">
+            <header><h2>Your loops</h2></header>
+            <div class="body">
+              <anvil-component type="RepeatingPanel" name="mine_panel" prop:item_template="Product_Expert.Items.LoopRow" prop:role='["lo-mine"]'></anvil-component>
+              <p class="muted small" anvil:name="no_mine">No loops yet. A full loop takes 52 minutes; block the time like a real interview.</p>
+            </div>
+          </section>
+        </div>
+
+        <div class="lo-round" anvil:name="round_part">
+          <ol class="lo-steps" aria-label="Rounds">
+            <li anvil:dom-node="st0"></li><li anvil:dom-node="st1"></li><li anvil:dom-node="st2"></li><li anvil:dom-node="st3"></li>
+          </ol>
+          <div class="lo-layout">
+            <div class="lo-main">
+              <div class="ui-card lo-persona">
+                <span class="ui-avatar" anvil:dom-node="p_initials" aria-hidden="true"></span>
+                <div>
+                  <b anvil:dom-node="p_name"></b>
+                  <small class="muted" anvil:dom-node="p_role"></small>
+                  <p class="lo-line" anvil:dom-node="p_line"></p>
+                </div>
+              </div>
+              <div class="ch-brief">
+                <h2 class="px-ph" anvil:dom-node="ch_title"></h2>
+                <p class="sit" anvil:dom-node="situation"></p>
+                <p class="ask" anvil:dom-node="ask"></p>
+              </div>
+              <label class="ui-field"><span>Your answer <em>(as you would say it in the room: decision first, then why)</em></span>
+                <anvil-component type="TextArea" name="answer_box" prop:placeholder="Start with your recommendation..." prop:role='["ch-answer"]'></anvil-component>
+              </label>
+              <div class="ui-row between lo-submit">
+                <span class="small muted" anvil:dom-node="saved_note">Your draft is kept in this browser until you hand it in.</span>
+                <anvil-component type="Button" name="submit_button" prop:text="Hand in this round" prop:role='["btn", "btn-primary", "ic-arrow"]'></anvil-component>
+              </div>
+            </div>
+            <aside class="lo-side">
+              <div class="ui-card lo-timer" anvil:dom-node="timer_box">
+                <span class="small muted" anvil:dom-node="timer_label">Time left</span>
+                <b class="lo-time" anvil:dom-node="time" role="timer" aria-live="off"></b>
+                <div class="lo-track"><i anvil:dom-node="time_fill"></i></div>
+                <span class="small muted" anvil:dom-node="timer_note"></span>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <div class="lo-debrief" anvil:name="debrief_part">
+          <div class="ui-note">Read each model answer, then tick only what your answer genuinely covered. Be strict: an interviewer would be.</div>
+          <anvil-component type="RepeatingPanel" name="debrief_panel" prop:item_template="Product_Expert.Items.LoopDebrief" prop:role='["lo-debriefs"]'></anvil-component>
+          <div class="ui-row end">
+            <anvil-component type="Button" name="finish_button" prop:text="Get my verdict" prop:role='["btn", "btn-primary", "btn-lg", "ic-award"]'></anvil-component>
+          </div>
+        </div>
+
+        <div class="lo-done" anvil:name="done_part">
+          <div class="lo-done-grid">
+            <section class="ui-card lo-verdict" anvil:dom-node="verdict_box">
+              <span class="small muted">The panel&rsquo;s verdict</span>
+              <h2 anvil:dom-node="verdict"></h2>
+              <p class="muted" anvil:dom-node="verdict_text"></p>
+              <div class="lo-avg"><b anvil:dom-node="avg"></b><span>average across the four rounds</span></div>
+              <div class="ui-row">
+                <a class="ui-btn primary" anvil:dom-node="weak_link"><i class="ic ic-book"></i><span anvil:dom-node="weak_text"></span></a>
+                <a class="ui-btn" href="#loop"><i class="ic ic-refresh"></i>Another loop</a>
+              </div>
+            </section>
+            <section class="px-panel">
+              <header><h2>Round by round</h2></header>
+              <div class="body">
+                <anvil-component type="RepeatingPanel" name="scores_panel" prop:item_template="Product_Expert.Items.LoopScore" prop:role='["lo-scores"]'></anvil-component>
+              </div>
+            </section>
+          </div>
+          <h2 class="lo-h">Your answers and the model answers</h2>
+          <anvil-component type="RepeatingPanel" name="review_panel" prop:item_template="Product_Expert.Items.LoopDebrief" prop:role='["lo-debriefs"]'></anvil-component>
+        </div>
+
+        <div class="ui-narrow" anvil:name="missing_part">
+          <div class="ui-empty"><i class="ic ic-alert"></i><h2>That interview loop isn&rsquo;t here</h2>
+            <p>It may belong to someone else.</p>
+            <a class="ui-btn primary" href="#loop">Interview Day</a></div>
+        </div>
+
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

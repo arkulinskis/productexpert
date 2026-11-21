@@ -69,6 +69,25 @@
           </div>
           <div class="hm-col">
             <section class="px-panel">
+              <header><h2>Practise like a director</h2></header>
+              <div class="body hm-pr">
+                <a class="hm-pr-row" href="#check" anvil:dom-node="check_link">
+                  <i class="ic ic-target"></i>
+                  <span class="grow"><b>Readiness check</b><small anvil:dom-node="check_sub">16 calls in 3 minutes: see where your judgement stands.</small></span>
+                  <span class="hm-pr-val" anvil:dom-node="check_val"></span>
+                </a>
+                <a class="hm-pr-row" href="#loop" anvil:dom-node="loop_link">
+                  <i class="ic ic-clock"></i>
+                  <span class="grow"><b>Interview Day</b><small anvil:dom-node="loop_sub">A timed four-round mock director loop.</small></span>
+                  <span class="hm-pr-val" anvil:dom-node="loop_val"></span>
+                </a>
+                <a class="hm-pr-row" href="#studio">
+                  <i class="ic ic-pen"></i>
+                  <span class="grow"><b>Red Pen Studio</b><small>Sourced margin notes on a strategy one-pager or an outcome roadmap.</small></span>
+                </a>
+              </div>
+            </section>
+            <section class="px-panel">
               <header><h2>Your credentials</h2><a class="small" href="#credentials">View all</a></header>
               <div class="body">
                 <anvil-component type="RepeatingPanel" name="creds_panel" prop:item_template="Product_Expert.Items.CredRow" prop:role='["hm-creds"]'></anvil-component>

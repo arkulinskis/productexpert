@@ -1,0 +1,17 @@
+<section class="ui-card lo-deb">
+  <div class="lo-deb-head">
+    <span class="ui-badge" anvil:dom-node="round"></span>
+    <span class="small muted" anvil:dom-node="who"></span>
+  </div>
+  <h3 anvil:dom-node="title"></h3>
+  <details class="lo-sit"><summary>The situation</summary><p anvil:dom-node="situation"></p><p class="ask" anvil:dom-node="ask"></p></details>
+  <h4>Your answer</h4>
+  <div class="mine" anvil:dom-node="mine"></div>
+  <h4>The model answer</h4>
+  <p class="model" anvil:dom-node="model"></p>
+  <div anvil:name="rubric_part">
+    <h4>Tick what your answer covered</h4>
+    <anvil-component type="Product_Expert.Components.Rubric" name="rubric"></anvil-component>
+  </div>
+  <p class="small" anvil:name="review_part"><a anvil:dom-node="ch_link">See it under the challenge</a></p>
+</section>

@@ -1,0 +1,141 @@
+<anvil-form layout="Product_Expert.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="sd">
+      <div class="no-print"><anvil-component type="Product_Expert.Components.Hero" name="hero"></anvil-component></div>
+      <div class="ui-wrap">
+
+        <div class="sd-index" anvil:name="index_part">
+          <section class="sd-sec">
+            <h2>Practice briefs</h2>
+            <p class="muted">A real-world situation from the programs and the company&rsquo;s current draft. Red-pen it, rewrite it, then save it to compare with the model answer.</p>
+            <anvil-component type="RepeatingPanel" name="briefs_panel" prop:item_template="Product_Expert.Items.StudioBrief" prop:role='["sd-briefs"]'></anvil-component>
+            <p class="muted small" anvil:name="briefs_error">The practice briefs couldn&rsquo;t load. Refresh the page to try again.</p>
+          </section>
+          <section class="sd-sec">
+            <h2>Your own document</h2>
+            <p class="muted">Paste your real strategy or roadmap. <b>It stays in this browser: nothing is sent to us.</b></p>
+            <div class="sd-own">
+              <a class="ui-card sd-own-card" href="#studio/own/strategy">
+                <i class="ic ic-scale"></i>
+                <span><b>Strategy one-pager</b><small>Diagnosis, guiding policy, actions, what you won&rsquo;t do, measures and risks.</small></span>
+              </a>
+              <a class="ui-card sd-own-card" href="#studio/own/roadmap">
+                <i class="ic ic-columns"></i>
+                <span><b>Outcome roadmap</b><small>Now, Next and Later: each bet with its problem, evidence and measure.</small></span>
+              </a>
+            </div>
+          </section>
+          <section class="sd-sec" anvil:name="mine_part">
+            <h2>Your saved practice documents</h2>
+            <anvil-component type="RepeatingPanel" name="docs_panel" prop:item_template="Product_Expert.Items.StudioDocRow" prop:role='["sd-docs"]'></anvil-component>
+            <p class="muted small" anvil:name="no_docs">Nothing saved yet. Save a practice brief to see the model answer and earn 10 XP the first time you reach a B.</p>
+          </section>
+          <section class="sd-sec ui-card sd-how">
+            <h2 class="px-ph">What the red pen checks</h2>
+            <ul class="px-ul">
+              <li>Strategy: a thin diagnosis, a goal posing as a policy, fewer than two or more than five actions, an empty &ldquo;will not&rdquo;, fluff words, measures that are outputs, no signals to revisit (Rumelt, Porter, Roger Martin).</li>
+              <li>Roadmap: dates beyond Now, bets with no evidence or no problem, measures that count delivery instead of outcomes.</li>
+              <li>Every note links its source. It&rsquo;s rule-based, not AI: it catches the classic mistakes, not whether your bet is right.</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="sd-edit" anvil:name="edit_part">
+          <div class="ui-card sd-brief no-print" anvil:name="brief_box">
+            <h2 class="px-ph" anvil:dom-node="brief_title"></h2>
+            <p anvil:dom-node="brief_situation"></p>
+            <p class="ask" anvil:dom-node="brief_ask"></p>
+            <div class="ui-row">
+              <anvil-component type="Button" name="draft_button" prop:text="Load the company's draft" prop:role='["btn", "btn-sm", "ic-copy"]'></anvil-component>
+              <anvil-component type="Button" name="blank_button" prop:text="Blank page" prop:role='["btn", "btn-sm", "btn-ghost", "ic-edit"]'></anvil-component>
+            </div>
+          </div>
+          <div class="ui-note sd-local no-print" anvil:name="local_note"><i class="ic ic-lock"></i> <span anvil:dom-node="local_text">My own mode: this document stays in this browser. Nothing is sent to us.</span></div>
+
+          <div class="sd-layout no-print">
+            <div class="sd-doc">
+              <label class="ui-field sd-title"><span>Title</span>
+                <anvil-component type="TextBox" name="title_box" prop:placeholder="Untitled"></anvil-component>
+              </label>
+              <div class="sd-strategy ui-stack" anvil:name="strategy_part">
+                <label class="ui-field"><span>Diagnosis <em anvil:dom-node="h_diagnosis"></em></span>
+                  <anvil-component type="TextArea" name="f_diagnosis" prop:role='["sd-ta"]'></anvil-component></label>
+                <label class="ui-field"><span>Guiding policy <em anvil:dom-node="h_policy"></em></span>
+                  <anvil-component type="TextArea" name="f_policy" prop:role='["sd-ta"]'></anvil-component></label>
+                <label class="ui-field"><span>Coherent actions <em anvil:dom-node="h_actions"></em></span>
+                  <anvil-component type="TextArea" name="f_actions" prop:role='["sd-ta"]'></anvil-component></label>
+                <label class="ui-field"><span>We will not <em anvil:dom-node="h_will_not"></em></span>
+                  <anvil-component type="TextArea" name="f_will_not" prop:role='["sd-ta"]'></anvil-component></label>
+                <label class="ui-field"><span>Measures <em anvil:dom-node="h_measures"></em></span>
+                  <anvil-component type="TextArea" name="f_measures" prop:role='["sd-ta"]'></anvil-component></label>
+                <label class="ui-field"><span>Risks and signals to revisit <em anvil:dom-node="h_risk"></em></span>
+                  <anvil-component type="TextArea" name="f_risk" prop:role='["sd-ta"]'></anvil-component></label>
+              </div>
+              <div class="sd-roadmap" anvil:name="roadmap_part">
+                <section class="sd-col">
+                  <h3>Now <small>this quarter</small></h3>
+                  <anvil-component type="RepeatingPanel" name="now_panel" prop:item_template="Product_Expert.Items.RoadmapCard" prop:role='["sd-cards"]'></anvil-component>
+                  <anvil-component type="Button" name="add_now" prop:text="Add a bet" prop:role='["btn", "btn-sm", "btn-ghost", "ic-plus"]'></anvil-component>
+                </section>
+                <section class="sd-col">
+                  <h3>Next <small>being shaped</small></h3>
+                  <anvil-component type="RepeatingPanel" name="next_panel" prop:item_template="Product_Expert.Items.RoadmapCard" prop:role='["sd-cards"]'></anvil-component>
+                  <anvil-component type="Button" name="add_next" prop:text="Add a bet" prop:role='["btn", "btn-sm", "btn-ghost", "ic-plus"]'></anvil-component>
+                </section>
+                <section class="sd-col">
+                  <h3>Later <small>problems worth solving</small></h3>
+                  <anvil-component type="RepeatingPanel" name="later_panel" prop:item_template="Product_Expert.Items.RoadmapCard" prop:role='["sd-cards"]'></anvil-component>
+                  <anvil-component type="Button" name="add_later" prop:text="Add a bet" prop:role='["btn", "btn-sm", "btn-ghost", "ic-plus"]'></anvil-component>
+                </section>
+              </div>
+              <div class="sd-actions">
+                <anvil-component type="Button" name="pen_button" prop:text="Red pen it" prop:role='["btn", "btn-primary", "btn-lg", "ic-pen"]'></anvil-component>
+                <anvil-component type="Button" name="save_button" prop:text="Save and see the model answer" prop:role='["btn", "btn-lg", "ic-check"]'></anvil-component>
+                <a class="ui-btn lg" anvil:dom-node="signin_link" href="#auth/signup"><i class="ic ic-lock"></i>Sign up to save</a>
+                <anvil-component type="Button" name="download_button" prop:text=".md" prop:tooltip="Download as Markdown" prop:role='["btn", "btn-ghost", "ic-download"]'></anvil-component>
+                <anvil-component type="Button" name="print_button" prop:text="Print" prop:role='["btn", "btn-ghost", "ic-print"]'></anvil-component>
+                <anvil-component type="Button" name="clear_button" prop:text="Start over" prop:role='["btn", "btn-ghost", "btn-danger", "ic-trash"]'></anvil-component>
+              </div>
+            </div>
+
+            <aside class="sd-margin" aria-label="Red pen notes">
+              <div class="sd-mark" anvil:name="mark_box">
+                <div class="sd-stamp" anvil:dom-node="stamp"><b anvil:dom-node="grade"></b><span anvil:dom-node="score"></span></div>
+                <div>
+                  <h2 class="px-ph" anvil:dom-node="mark_head" aria-live="polite"></h2>
+                  <p class="small muted" anvil:dom-node="mark_sub"></p>
+                </div>
+              </div>
+              <anvil-component type="RepeatingPanel" name="notes_panel" prop:item_template="Product_Expert.Items.PenNote" prop:role='["sd-notes"]'></anvil-component>
+              <div class="sd-empty" anvil:name="no_notes">
+                <i class="ic ic-pen"></i>
+                <p>Write your draft, then press <b>Red pen it</b>. Notes appear here in a second, each with its source.</p>
+              </div>
+            </aside>
+          </div>
+
+          <section class="ui-card sd-model no-print" anvil:name="model_box">
+            <div class="ui-row between">
+              <h2 class="px-ph">The model answer</h2>
+              <span class="ui-badge good" anvil:dom-node="model_grade"></span>
+            </div>
+            <p class="small muted">One strong answer, not the only one. Compare the choices, not the wording.</p>
+            <anvil-component type="RichText" name="model_text" prop:format="markdown" prop:enable_slots="false" prop:role='["sd-md"]'></anvil-component>
+            <p class="small"><a anvil:dom-node="model_ch">Write the full challenge answer too</a></p>
+          </section>
+
+          <div class="sd-print" aria-hidden="true">
+            <anvil-component type="RichText" name="print_text" prop:format="markdown" prop:enable_slots="false"></anvil-component>
+          </div>
+        </div>
+
+        <div class="ui-narrow" anvil:name="missing_part">
+          <div class="ui-empty"><i class="ic ic-alert"></i><h2 anvil:dom-node="missing_head">That document isn&rsquo;t here</h2>
+            <p>It may have been deleted, or it belongs to someone else.</p>
+            <a class="ui-btn primary" href="#studio">Red Pen Studio</a></div>
+        </div>
+
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

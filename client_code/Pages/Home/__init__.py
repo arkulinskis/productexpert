@@ -17,6 +17,10 @@ class Home(HomeTemplate):
 
     def __init__(self, args=(), **properties):
         super().__init__(**properties)
+        code, claimed = state.store_get("check_code"), state.store_get("check_claimed")
+        if code and code != claimed:  # a readiness check taken before signing in joins the account
+            state.call_quiet("claim_check", code)
+            state.store_set("check_claimed", code)
         d = state.call("get_dashboard", px.today())
         if d:
             self._draw(d)
@@ -74,9 +78,24 @@ class Home(HomeTemplate):
         px.set_text(n["case_title"], c["title"])
         px.set_text(n["case_summary"], c["summary"])
         n["case_link"].setAttribute("href", "#cases/" + c["id"])
+        self._practice(d.get("check"), d.get("loop"))
         self.honour_panel.items = [dict(h, compact=True) for h in d["honour"]]
         self.no_honour.visible = not d["honour"]
         self.honour_panel.visible = bool(d["honour"])
+
+    def _practice(self, c, lp):
+        n = self.dom_nodes
+        n["check_val"].hidden = not c
+        if c:
+            n["check_link"].setAttribute("href", "#check/" + c["code"])
+            weak = (" · gaps: " + ", ".join(c["weak"])) if c.get("weak") else ""
+            px.set_text(n["check_sub"], "%s · %s%s" % (c["band"], px.date(c["created"], "short"), weak))
+            px.set_text(n["check_val"], "%d/%d" % (c["score"], c["of"]))
+        n["loop_val"].hidden = not lp
+        if lp:
+            n["loop_link"].setAttribute("href", "#loop/" + lp["id"])
+            px.set_text(n["loop_sub"], "%s · %s · average %d%%" % (lp["title"], px.date(lp["finished"], "short"), lp["score"]))
+            px.set_text(n["loop_val"], lp["verdict"])
 
     def _plan(self, p):
         self.plan_card.visible, self.noplan_card.visible = bool(p), not p

@@ -16,7 +16,7 @@ engine was ported from AI Expert (aiexpert, itself from C-Suite Coach); content,
 
 **Where it lives:**
 - Folder `C:\Users\arkvi\Documents\CLAUDE\productexpert\` = the git clone of **github.com/arkulinskis/productexpert**,
-  branch `master`. "git" layout: the folder *is* the Anvil app. Anvil pulls master; pushing is the deploy. Live: not yet.
+  branch `master`. "git" layout: the folder *is* the Anvil app. Anvil pulls master; pushing is the deploy. Live: https://productexpert.anvil.app.
 - Made from `C:\Users\arkvi\Documents\CLAUDE\APP_MAKER\template-forms` (native Anvil Forms, Nov 2026). Anvil's own agent
   skills describe the same model: `client-forms`, `data-models`, `server-code`, `client-modules`, `anvil-yaml`
   (github.com/anvil-works/anvil-agent-references; see APP_MAKER/ANVIL_NOTES.md, "Native Anvil Forms").
@@ -145,6 +145,21 @@ tools/                     check.py, assets.py, build_icons.py, make_icons.py, u
   `fig` must exist there. TRACK_FIG in client_code/px.py maps programs to diagrams.
 - **Plans**: Plan.py (ORDER per goal, WARMUP per background, MODULE_EXTRA minutes); stored on users.plan.
 - **Director rule**: Curriculum.FELLOW_NEED (4) + Exams.maybe_fellow. Ranks: Learning.RANKS (Associate PM -> VP of Product).
+- **Readiness Check** (2026-11-20): server_code/Check.py (ITEM_IDS = the 16 call items, BANDS), Pages/Check,
+  Components/Radar (PX.radar in px-kit.js), Items/CheckTrack, table `checks`. get_check deals statements without
+  verdicts and starts a run in the server session; reveal_check records the FIRST answer then returns the verdict;
+  save_check scores only the recorded answers. Guests' codes sit in UI.store `check_code`; Home claims it once
+  (claim_check, results under 2 days old). Changing ITEM_IDS changes what old codes mean: append, don't reorder.
+- **Red Pen Studio** (2026-11-20): rules in client_code/redpen.py (pure Python, no re: Skulpt-safe; the server imports
+  it too, and test_server.py copies it into the mock app). Studio.BRIEFS = practice briefs (challenge, the weak
+  `start` draft, the `model`); the Slogan draft must grade D and both models A or B. Pages/Studio (#studio,
+  /own/<kind>, /practice/<brief>, /doc/<id>), Items PenNote, RoadmapCard, StudioBrief, StudioDocRow; table
+  `studio_docs`. Own mode never calls the server (drafts in UI.store `studio_own_<kind>`). Print uses a hidden
+  RichText of the Markdown (`.sd-print`, named @page `studio`).
+- **Interview Day** (2026-11-20): server_code/Loops.py (LOOPS: formats -> round pools of module challenges + personas,
+  fictional), Pages/Loop (Anvil Timer, soft clock; round start time + draft in UI.store `loop_<id>_<i>_*`), Items
+  LoopFormat, LoopRow, LoopDebrief, LoopScore; table `loops`. finish_loop records each round through
+  Learning._record_attempt (split out of submit_challenge). Verdicts: Loops.verdict_for.
 - **Feedback**: Prepsto link `au7urjq` (made 2026-11-14 after Prepsto's limit went from 60 to 100 links), in
   anvil.yaml, state.py, Shell and Library; listed in APP_MAKER/prepsto-links.json.
 

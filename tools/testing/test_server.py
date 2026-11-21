@@ -19,6 +19,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 _tmp = pathlib.Path(tempfile.mkdtemp())
 shutil.copytree(PROJECT / "server_code", _tmp / "app")
+shutil.copy(PROJECT / "client_code" / "redpen.py", _tmp / "app" / "redpen.py")  # a client module the server imports (one package in Anvil)
 (_tmp / "app" / "__init__.py").write_text("")
 os.environ["ANVIL_APP_YAML"] = str(PROJECT / "anvil.yaml")  # the mock's tables follow the app's own schema
 sys.path[:0] = [str(HERE / "mock"), str(_tmp)]
@@ -366,7 +367,8 @@ if "legal_server" in M:
 # ---------------------------------------------------------------------------------- every callable is covered by a permission check
 # A callable that changes data without require_user / a C.require_* check is a security hole. List the public ones here.
 PUBLIC = {"log_client_error", "session_ping", "get_me", "submit_feedback", "legal_state", "legal_accept", "get_catalog", "get_track", "get_module", "get_cases",
-          "get_case", "get_honour_roll", "get_credential", "get_library", "get_labs", "get_lab"}
+          "get_case", "get_honour_roll", "get_credential", "get_library", "get_labs", "get_lab",
+          "get_check", "reveal_check", "save_check", "get_check_result", "get_studio_briefs"}
 for name, (f, need) in sorted(anvil.server.CALLABLES.items()):
     if name in PUBLIC:
         continue

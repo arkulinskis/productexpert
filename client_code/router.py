@@ -30,14 +30,17 @@ PAGES = {
     "library": (None, "The Library"),
     "labs": (None, "Labs"),
     "plan": ("user", "Your study plan"),
+    "check": (None, "Director Readiness Check"),
+    "studio": (None, "Red Pen Studio"),
+    "loop": ("user", "Interview Day"),
     "profile": ("user", "Your profile"),
     "admin": ("admin", "Admin"),
 }
 NAV = [("home", "Home", "home"), ("tracks", "Programs", "columns"), ("study", "Review", "cards"),
        ("plan", "Plan", "calendar")]
 NAV_MORE = [("labs", "Labs", "flask"), ("library", "Library", "book")]
-GUEST_NAV = [("tracks", "Programs", "columns"), ("labs", "Labs", "flask"), ("library", "Library", "book"),
-             ("cases", "Cases", "alert")]
+GUEST_NAV = [("check", "Readiness check", "target"), ("tracks", "Programs", "columns"), ("labs", "Labs", "flask"),
+             ("library", "Library", "book"), ("cases", "Cases", "alert")]
 APP_NAME = "Product Expert"
 _r: dict = {"after": "", "listening": False}
 
@@ -92,6 +95,15 @@ def _form(name):
     if name == "profile":
         from .Pages.Profile import Profile
         return Profile
+    if name == "check":
+        from .Pages.Check import Check
+        return Check
+    if name == "studio":
+        from .Pages.Studio import Studio
+        return Studio
+    if name == "loop":
+        from .Pages.Loop import Loop
+        return Loop
     from .Pages.Admin import Admin
     return Admin
 

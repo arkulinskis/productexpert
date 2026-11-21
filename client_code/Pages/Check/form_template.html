@@ -1,0 +1,102 @@
+<anvil-form layout="Product_Expert.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ck">
+      <anvil-component type="Product_Expert.Components.Hero" name="hero"></anvil-component>
+      <div class="ui-wrap">
+
+        <div class="ck-intro" anvil:name="intro_part">
+          <div class="ui-card ck-how">
+            <h2 class="px-ph">How it works</h2>
+            <ol class="ck-steps">
+              <li><b>Read the statement.</b> Each one is something a product leader said or did.</li>
+              <li><b>Make the call.</b> Would a strong director of product do this? Press <kbd>1</kbd> for would, <kbd>2</kbd> for wouldn&rsquo;t.</li>
+              <li><b>See why, straight away.</b> Every answer shows the reasoning, drawn from the module that teaches it.</li>
+            </ol>
+            <p class="small muted">Two statements from each of the eight programs, so the result shows where your judgement is already a director&rsquo;s and where it isn&rsquo;t yet. Your result gets its own link to share. No account needed.</p>
+            <anvil-component type="Button" name="start_button" prop:text="Start the check" prop:role='["btn", "btn-primary", "btn-lg", "ic-arrow"]'></anvil-component>
+          </div>
+          <aside class="ui-card ck-last" anvil:name="last_card">
+            <h2 class="px-ph">Your last result</h2>
+            <p class="muted small">Saved in this browser.</p>
+            <a class="ui-btn" anvil:dom-node="last_link"><i class="ic ic-target"></i><span anvil:dom-node="last_text">Open it</span></a>
+          </aside>
+        </div>
+
+        <div class="ck-run" anvil:name="run_part">
+          <div class="px-drill">
+            <div class="top">
+              <anvil-component type="Product_Expert.Components.Bar" name="bar" prop:label="Statements answered"></anvil-component>
+              <span class="count" anvil:dom-node="count"></span>
+            </div>
+            <article class="px-card advice ck-card">
+              <div class="kind">
+                <span class="ui-badge accent"><i class="ic ic-scale"></i>Director&rsquo;s call?</span>
+                <span class="ui-badge" anvil:dom-node="b_track"></span>
+              </div>
+              <p class="q quote" anvil:dom-node="q"></p>
+              <p class="prompt">Would a strong director of product do this?</p>
+              <div class="back" anvil:name="back">
+                <span class="verdict" anvil:name="verdict"><i class="ic" anvil:dom-node="verdict_ic"></i><span anvil:dom-node="verdict_t"></span></span>
+                <p class="ck-you" anvil:dom-node="you"></p>
+                <p class="a" anvil:dom-node="why"></p>
+                <p class="note" anvil:dom-node="from"></p>
+              </div>
+              <div class="actions">
+                <anvil-component type="Button" name="would_button" prop:text="A director would" prop:role='["btn", "btn-lg", "ic-check"]'></anvil-component>
+                <anvil-component type="Button" name="wouldnt_button" prop:text="A director wouldn't" prop:role='["btn", "btn-lg", "ic-x"]'></anvil-component>
+                <anvil-component type="Button" name="next_button" prop:text="Next statement" prop:role='["btn", "btn-primary", "btn-lg", "btn-block", "ic-arrow"]'></anvil-component>
+              </div>
+              <div class="keys" anvil:dom-node="keys"></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="ck-result" anvil:name="result_part">
+          <div class="ck-res-grid">
+            <section class="ui-card ck-score">
+              <div class="ck-big"><b anvil:dom-node="score"></b><span anvil:dom-node="of"></span></div>
+              <h2 class="ck-band" anvil:dom-node="band"></h2>
+              <p class="muted" anvil:dom-node="band_text"></p>
+              <p class="small muted"><span anvil:dom-node="when"></span> <span class="ui-badge" anvil:dom-node="sample" hidden>Sample record</span></p>
+              <div class="ui-row ck-actions">
+                <a class="ui-btn primary" anvil:dom-node="plan_link"><i class="ic ic-calendar"></i>Build my plan</a>
+                <anvil-component type="Button" name="share_button" prop:text="Share" prop:role='["btn", "ic-link"]'></anvil-component>
+                <a class="ui-btn ghost" href="#check" anvil:dom-node="again_link"><i class="ic ic-refresh"></i>Take it again</a>
+              </div>
+              <div class="ui-note ck-claim" anvil:name="claim_box">
+                <span>Keep this result with your progress and see it on your dashboard.</span>
+                <anvil-component type="Button" name="claim_button" prop:text="Save to my account" prop:role='["btn", "btn-sm", "ic-check"]'></anvil-component>
+              </div>
+              <div class="ui-note ck-claim" anvil:name="guest_box">
+                <span>Create a free account to keep this result and get a week-by-week plan for your gaps.</span>
+                <a class="ui-btn sm primary" href="#auth/signup" anvil:dom-node="signup_link">Start free</a>
+              </div>
+            </section>
+            <section class="ui-card ck-radar-card">
+              <h2 class="px-ph">By program</h2>
+              <anvil-component type="Product_Expert.Components.Radar" name="radar"></anvil-component>
+              <p class="small muted ck-legend"><span class="ck-dot weak" aria-hidden="true"></span>Saffron: a program where you missed a call</p>
+              <anvil-component type="RepeatingPanel" name="tracks_panel" prop:item_template="Product_Expert.Items.CheckTrack" prop:role='["ck-tracks"]'></anvil-component>
+            </section>
+          </div>
+          <section class="ck-gaps-sec">
+            <h2 anvil:dom-node="gaps_head">Where to close the gap</h2>
+            <p class="muted" anvil:dom-node="gaps_lead"></p>
+            <anvil-component type="RepeatingPanel" name="gaps_panel" prop:item_template="Product_Expert.Items.ModuleLink" prop:role='["ck-gaps"]'></anvil-component>
+            <div class="ui-row ck-next" anvil:name="next_steps">
+              <a class="ui-btn" href="#loop"><i class="ic ic-clock"></i>Try a mock Interview Day</a>
+              <a class="ui-btn" href="#studio"><i class="ic ic-pen"></i>Red-pen a strategy doc</a>
+            </div>
+          </section>
+        </div>
+
+        <div class="ui-narrow" anvil:name="missing_part">
+          <div class="ui-empty"><i class="ic ic-alert"></i><h2>No result with that code</h2>
+            <p>Check the link, or take the check yourself: it takes about three minutes.</p>
+            <a class="ui-btn primary" href="#check">Take the check</a></div>
+        </div>
+
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

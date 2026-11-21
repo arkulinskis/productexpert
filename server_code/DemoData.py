@@ -24,7 +24,7 @@ DEMO_USERS = [
 FELLOW_CODE = "PXP-DIR-2026-D9RV3C"   # Tomás holds Foundations + 4 specialist certificates
 
 # Tables that hold demo rows (each has an is_demo column). Children before parents.
-DEMO_TABLES = ["bookmarks", "lab_runs", "credentials", "exams", "attempts", "module_progress", "card_state"]
+DEMO_TABLES = ["checks", "loops", "studio_docs", "bookmarks", "lab_runs", "credentials", "exams", "attempts", "module_progress", "card_state"]
 
 
 def state():
@@ -66,8 +66,24 @@ def load():
         if name.startswith("Tomás"):
             app_tables.credentials.add_row(user=u, track="fellow", code=FELLOW_CODE, holder=name, issued=now - dt.timedelta(days=1),
                                            score=100, revoked=False, is_demo=True)
+        _demo_check(u, name, now)
     C.set_setting("demo", "loaded")
     return counts()
+
+
+# Readiness Check results for the demo cohort: how many of the 16 statements each one missed (every other item).
+DEMO_MISSED = {"Priya": 3, "Tomás": 1, "Grace": 7, "Lukas": 4, "Hannah": 3, "Wei": 9}
+
+
+def _demo_check(u, name, now):
+    from . import Check
+    n = DEMO_MISSED.get(name.split(" ")[0], 4)
+    missed = set(Check.ITEM_IDS[1::2][:n] + Check.ITEM_IDS[0::2][:max(0, n - 8)])
+    from . import Curriculum as K
+    answers = {iid: (bool(K.ITEMS[iid]["sound"]) if iid not in missed else not K.ITEMS[iid]["sound"]) for iid in Check.ITEM_IDS}
+    score, by_track, miss = Check.score_answers(answers)
+    app_tables.checks.add_row(code=Check._new_code(), user=u, score=score, by_track=by_track, missed=miss,
+                              created=now - dt.timedelta(days=20), is_demo=True)
 
 
 def remove(remember=True):

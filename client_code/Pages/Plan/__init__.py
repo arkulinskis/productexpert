@@ -43,6 +43,7 @@ class Plan(PlanTemplate):
         if not s:
             return
         self.goal_label.text = p["goal_label"]
+        self.interview_box.visible = p.get("goal") == "interview"
         self.ends_label.text = "%s · %s" % (px.date(s["ends"], "long"), state.plural(s["total_weeks"], "week"))
         self.done_label.text = "%d of %d steps" % (s["done_steps"], s["total_steps"])
         self.behind_label.visible = bool(s["behind"])

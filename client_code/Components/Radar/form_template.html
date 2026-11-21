@@ -1,0 +1,15 @@
+---
+custom_component: true
+properties:
+  - name: data
+    type: object
+    default_value: []
+    description: One row per program, [{code, title, score, of}]
+    default_binding_prop: true
+toolbox_item:
+  title: Readiness radar
+  group: Product Expert
+help_text: |
+  The Readiness Check radar (PX.radar in theme/assets/px-kit.js): one spoke per program, weak spokes in saffron.
+---
+<div class="px-radar-host"><div class="px-radar" anvil:dom-node="box"></div></div>

@@ -26,7 +26,7 @@
   }
   try {
     for (const h of ['#landing', '#auth', '#auth/signup', '#tracks', '#tracks/dsc', '#module/dsc-experiments', '#cases', '#cases/sonos',
-                     '#verify/PXP-DSC-2026-T4WX9N', '#certificate/PXP-DIR-2026-D9RV3C', '#library', '#labs', '#labs/peek', '#labs/tree', '#labs/cohort', '#labs/price', '#labs/unit', '#certificate/NOPE']) await check(h);
+                     '#verify/PXP-DSC-2026-T4WX9N', '#certificate/PXP-DIR-2026-D9RV3C', '#library', '#labs', '#labs/peek', '#labs/tree', '#labs/cohort', '#labs/price', '#labs/unit', '#certificate/NOPE', '#check', '#studio', '#studio/practice/slogan', '#studio/own/roadmap']) await check(h);
     // sign up so the member pages can be checked too
     location.hash = '#auth/signup';
     await until(() => window.UI_READY && $$('.au-card input').length >= 3, 'sign-up form');

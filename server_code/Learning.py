@@ -115,7 +115,17 @@ def get_dashboard(client_day=None):
             "credentials": [{"track": k, "title": K.track_title(k), "credential": K.credential_name(k), "code": v["code"], "issued": v["issued"]}
                             for k, v in sorted(creds.items(), key=lambda kv: kv[1]["issued"] or "")],
             "week": [{"day": d.isoformat(), "active": d in seen_days} for d in week],
-            "case": K.case_brief(case), "honour": _honour(6), "plan": _plan(me)}
+            "case": K.case_brief(case), "honour": _honour(6), "plan": _plan(me), "check": _check(me), "loop": _loop(me)}
+
+
+def _check(me):
+    from . import Check
+    return Check.latest(me)
+
+
+def _loop(me):
+    from . import Loops
+    return Loops.latest(me)
 
 
 def _plan(me):
@@ -266,9 +276,14 @@ def submit_challenge(challenge_id, answer, points, client_day=None):
         return C.fail("Write your decision first: at least a few sentences (40 characters).")
     if C.rate_limited("challenge", 40, 3600):
         return C.fail("That's a lot of attempts in one hour. Take a break and come back.")
-    day = today(client_day)
+    return C.ok(**_record_attempt(me, ch, answer, points, today(client_day)))
+
+
+def _record_attempt(me, ch, answer, points, day):
+    """Store one written attempt at a module challenge (also used by Interview Day rounds, Loops.finish_loop):
+    the attempt row, the module's best score, XP and module completion. answer must already be cleaned."""
     clean, score = score_points(points, len(ch["rubric"]))
-    app_tables.attempts.add_row(user=me, challenge=challenge_id, module=ch["module"], answer=answer, points=clean,
+    app_tables.attempts.add_row(user=me, challenge=ch["id"], module=ch["module"], answer=answer, points=clean,
                                 score=score, created=C.now(), is_demo=False)
     p = _progress_row(me, ch["module"])
     prev = int(p["challenge_score"] or 0)
@@ -277,5 +292,5 @@ def submit_challenge(challenge_id, answer, points, client_day=None):
         p["challenge_score"] = score
     add_xp(me, gained, day)
     done = check_complete(me, ch["module"], day)
-    return C.ok(score=score, best=max(score, prev), passed=score >= K.PASS_CHALLENGE, xp_gained=gained, xp=me["xp"],
-                module_completed=done, module_title=K.MODULES[ch["module"]]["title"] if done else None)
+    return {"score": score, "best": max(score, prev), "passed": score >= K.PASS_CHALLENGE, "xp_gained": gained, "xp": me["xp"],
+            "module_completed": done, "module_title": K.MODULES[ch["module"]]["title"] if done else None}

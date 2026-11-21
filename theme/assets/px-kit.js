@@ -11,6 +11,7 @@
      PX.fig(name, opts)        a line diagram (SVG string) for a module or program (FIGS below). Colours come from CSS
                                variables, so it themes itself.
      PX.betboard(el)           the landing hero: a FEATURE ROADMAP vs an OUTCOME TREE with a drag handle (before/after)
+     PX.radar(rows, opts)      the Readiness Check radar (SVG string): one spoke per program, weak spokes in saffron
    Python reaches these through client_code/px.py and the Certificate / Seal / Ring / Hero / BetBoard components. */
 (function () {
   'use strict';
@@ -385,5 +386,40 @@
     window.addEventListener('resize', fit);
     setTimeout(fit, 60);
     return function () { window.removeEventListener('resize', fit); if (ro) ro.disconnect(); };
+  };
+  /* ---------------------------------------------------------------- the readiness radar (#check) */
+  // PX.radar(rows, opts) -> SVG string. rows = [{code, title, score, of}] (one spoke each, clockwise from the top).
+  // Full spokes are cobalt; any spoke short of full is a weak area and is drawn in saffron. Themes itself (CSS vars).
+  PX.radar = function (rows, opts) {
+    rows = rows || []; opts = opts || {};
+    var n = rows.length || 1, W = 340, H = 290, cx = W / 2, cy = H / 2 + 2, R = 96;
+    var pt = function (i, f) {
+      var a = -Math.PI / 2 + i * 2 * Math.PI / n;
+      return [cx + Math.cos(a) * R * f, cy + Math.sin(a) * R * f];
+    };
+    var ring = function (f) {
+      var p = [];
+      for (var i = 0; i < n; i++) p.push(pt(i, f).map(function (v) { return v.toFixed(1); }).join(','));
+      return '<polygon points="' + p.join(' ') + '" fill="none" stroke="var(--c-line)" stroke-width="1"/>';
+    };
+    var s = '<svg class="px-radar-svg" viewBox="0 0 ' + W + ' ' + H + '" width="100%" role="img" aria-label="' +
+      esc(opts.label || ('Readiness by program: ' + rows.map(function (r) { return r.title + ' ' + r.score + ' of ' + r.of; }).join(', '))) + '">';
+    s += ring(1) + ring(0.5);
+    for (var i = 0; i < n; i++) {
+      var e = pt(i, 1);
+      s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + e[0].toFixed(1) + '" y2="' + e[1].toFixed(1) + '" stroke="var(--c-line)" stroke-width="1"/>';
+    }
+    var poly = [];
+    rows.forEach(function (r, i) { poly.push(pt(i, Math.max(0.06, (r.score || 0) / (r.of || 1))).map(function (v) { return v.toFixed(1); }).join(',')); });
+    var anim = reduced() ? '' : ' class="px-radar-shape"';
+    s += '<polygon' + anim + ' points="' + poly.join(' ') + '" fill="color-mix(in srgb, var(--c-brand) 16%, transparent)" stroke="var(--c-brand)" stroke-width="2" stroke-linejoin="round"/>';
+    rows.forEach(function (r, i) {
+      var weak = (r.score || 0) < (r.of || 1), p = pt(i, Math.max(0.06, (r.score || 0) / (r.of || 1))), l = pt(i, 1.18);
+      s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + (weak ? 5.5 : 4.5) + '" fill="' + (weak ? 'var(--c-accent)' : 'var(--c-brand)') + '" stroke="var(--c-surface)" stroke-width="2"/>';
+      var anchor = Math.abs(l[0] - cx) < 8 ? 'middle' : (l[0] > cx ? 'start' : 'end');
+      s += '<text x="' + l[0].toFixed(1) + '" y="' + (l[1] + 4).toFixed(1) + '" text-anchor="' + anchor + '" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" font-weight="700" fill="' +
+        (weak ? 'var(--c-accent-text)' : 'var(--c-muted)') + '">' + esc(r.code) + ' ' + (r.score || 0) + '/' + (r.of || 1) + '</text>';
+    });
+    return s + '</svg>';
   };
 })();

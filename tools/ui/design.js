@@ -11,8 +11,8 @@
    Resolves to {ok, log}. Keep log lines ASCII (the Windows console). */
 (async function () {
   const PUBLIC = ['#landing', '#auth/signup', '#tracks', '#tracks/dsc', '#module/dsc-experiments', '#cases', '#cases/sonos',
-                  '#verify/PXP-DSC-2026-T4WX9N', '#certificate/PXP-DIR-2026-D9RV3C', '#library', '#labs', '#labs/peek', '#labs/tree', '#labs/cohort', '#labs/price', '#labs/unit'];
-  const MEMBER = ['#home', '#tracks/core', '#module/core-decisions', '#study/core-writing', '#challenge/ch-dsc-experiments', '#exam/core',
+                  '#verify/PXP-DSC-2026-T4WX9N', '#certificate/PXP-DIR-2026-D9RV3C', '#library', '#labs', '#labs/peek', '#labs/tree', '#labs/cohort', '#labs/price', '#labs/unit', '#check', '#studio', '#studio/practice/slogan', '#studio/own/roadmap'];
+  const MEMBER = ['#home', '#loop', '#tracks/core', '#module/core-decisions', '#study/core-writing', '#challenge/ch-dsc-experiments', '#exam/core',
                   '#credentials', '#profile', '#plan'];
   const OVERUSED = ['inter', 'roboto', 'plus jakarta sans', 'geist', 'space grotesk', 'fraunces'];
   const phone = window.innerWidth < 600;
